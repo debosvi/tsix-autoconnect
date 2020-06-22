@@ -2,22 +2,20 @@
 #include <QCommandLineParser>
 #include <QCommandLineOption>
 
+// #include <QHostInfo>
+#include <QtGlobal>
 #include <QLockFile>
-#include <QDir>
-#include <QTextStream>
 #include <QDebug>
-
-QTextStream& qStdErr()
-{
-    static QTextStream ts( stdout );
-    return ts;
-}
 
 int main(int argc, char **argv) {
     QCoreApplication app(argc, argv);
     
 	app.setOrganizationName("Akka CDS Thalès SIX");
-    app.setApplicationName("Test Application for locking file");
+	
+	QString sysUsername = qgetenv("USER");
+	if (sysUsername.isEmpty()) sysUsername = qgetenv("USERNAME");
+
+    app.setApplicationName("Test Application for locking file (" + sysUsername + ")");
     app.setApplicationVersion(QT_VERSION_STR);
     
 	QCommandLineParser parser;
@@ -29,15 +27,26 @@ int main(int argc, char **argv) {
     parser.process(app);
 	
 	QString lockfile_path = app.applicationDirPath() + "/lockfile";
-	qDebug() << "Lock file path: " << lockfile_path;
+	qInfo() << "Lock file path: " << lockfile_path;
 	
 	QLockFile lf(lockfile_path);
 	
 	int b=lf.tryLock();
-	if(b)
-		qDebug() << "lock acquired!";
-	else
-		qDebug() << "lock refused!";
+	if(b) {
+		qInfo() << "lock acquired!";
+	}
+	else {
+		qInfo() << "lock refused!";
+		qint64 pid;
+		QString hostname;
+		QString appname;
+		if(lf.getLockInfo(&pid, &hostname, &appname)) {
+			qInfo() << "Lock acquired by application: " << appname;
+		}
+		else {
+			qCritical() << "Unable to retrieve lock information";
+		}		
+	}
 
     return app.exec();
 }

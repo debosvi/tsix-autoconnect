@@ -1,5 +1,4 @@
 cmake_minimum_required(VERSION 3.1.0)
-
 project(tsix-autoconnect)
 
 set(CMAKE_AUTOMOC ON)
@@ -12,15 +11,18 @@ endif()
 
 find_package(Qt5 COMPONENTS Core REQUIRED)
 
+# some additional settings
 add_definitions(-Wall -Werror)
 
-add_executable(lock_app
-    main.cpp
-)
+# define custom output dirs
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
-target_link_libraries(lock_app Qt5::Core)
-
+# delivery targets
 add_custom_target(deliver ALL
-	COMMAND ${CMAKE_COMMAND} -DOUT_DIR=${PROJECT_BINARY_DIR} -P ${PROJECT_SOURCE_DIR}/cmake/deliver.cmake
-	DEPENDS lock_app
+	COMMENT "Deliver addtional stuffs"
 )
+
+add_subdirectory(locker)
+

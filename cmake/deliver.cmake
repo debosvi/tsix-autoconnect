@@ -1,9 +1,11 @@
 
 if("${OUT_DIR}" STREQUAL "")
 	message(FATAL_ERROR "Must set output directory with OUT_DIR variable")
+elseif("${BIN_NAME}" STREQUAL "" )
+	message(FATAL_ERROR "Must set executable to check with BIN_NAME variable")
 else()
 	execute_process (
-		COMMAND bash -c "ldd lock_app"
+		COMMAND bash -c "ldd ${BIN_NAME}"
 		COMMAND bash -c "grep -s 'cyg.*\\.dll\ ='"
 		COMMAND bash -c "cut -d\" \" -f3"
 		COMMAND bash -c "tr '\n' ';'"

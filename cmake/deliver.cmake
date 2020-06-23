@@ -15,8 +15,15 @@ else()
 	message(STATUS "Files to copy for delivery: ${outLDD}")
 	message(STATUS "Copy into: ${OUT_DIR}")
 
-	foreach(file ${outLDD})
-	  configure_file(${file} ${OUT_DIR} COPYONLY)
-	endforeach()
-
+	if("${CLEAN}" STREQUAL "")
+		# copy files
+		foreach(file ${outLDD})
+		  configure_file(${file} ${OUT_DIR} COPYONLY)
+		endforeach()
+	else()
+		# delete files
+		foreach(file ${outLDD})
+		  file(REMOVE ${file})
+		endforeach()
+	endif()
 endif()

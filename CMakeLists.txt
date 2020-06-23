@@ -24,5 +24,10 @@ add_custom_target(deliver ALL
 	COMMENT "Deliver addtional stuffs"
 )
 
+# clean targets
+add_custom_target(clean-all
+   COMMAND ${CMAKE_BUILD_TOOL} clean
+)
+
 add_subdirectory(locker)
 

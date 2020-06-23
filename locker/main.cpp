@@ -2,19 +2,25 @@
 #include <QCommandLineParser>
 #include <QCommandLineOption>
 
-// #include <QHostInfo>
 #include <QtGlobal>
 #include <QLockFile>
 #include <QDebug>
 
+#include "SignalHandler.h"
+#include "DbLocker.h"
+
 int main(int argc, char **argv) {
     QCoreApplication app(argc, argv);
-    
-	app.setOrganizationName("Akka CDS Thalès SIX");
+	SignalHandler sig_handler;
+	
+	QObject::connect(&sig_handler, SIGNAL(s_term()), &app, SLOT(quit()));
+	QObject::connect(&sig_handler, SIGNAL(s_close()), &app, SLOT(quit()));
+	QObject::connect(&sig_handler, SIGNAL(s_int()), &app, SLOT(quit()));
 	
 	QString sysUsername = qgetenv("USER");
 	if (sysUsername.isEmpty()) sysUsername = qgetenv("USERNAME");
-
+    
+	app.setOrganizationName("Akka CDS Thalès SIX");
     app.setApplicationName("Test Application for locking file (" + sysUsername + ")");
     app.setApplicationVersion(QT_VERSION_STR);
     
@@ -26,27 +32,11 @@ int main(int argc, char **argv) {
     parser.addPositionalArgument("file", "The file to open.");
     parser.process(app);
 	
-	QString lockfile_path = app.applicationDirPath() + "/lockfile";
-	qInfo() << "Lock file path: " << lockfile_path;
+	DbLocker locker(app.applicationDirPath());
 	
-	QLockFile lf(lockfile_path);
+	QObject::connect(&app, SIGNAL(aboutToQuit()), &locker, SLOT(onExit()));
 	
-	int b=lf.tryLock();
-	if(b) {
-		qInfo() << "lock acquired!";
-	}
-	else {
-		qInfo() << "lock refused!";
-		qint64 pid;
-		QString hostname;
-		QString appname;
-		if(lf.getLockInfo(&pid, &hostname, &appname)) {
-			qInfo() << "Lock acquired by application: " << appname;
-		}
-		else {
-			qCritical() << "Unable to retrieve lock information";
-		}		
-	}
+	locker.lock();
 
     return app.exec();
 }

@@ -15,9 +15,10 @@ find_package(Qt5 COMPONENTS Core REQUIRED)
 add_definitions(-Wall -Werror)
 
 # define custom output dirs
-set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
-set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
+set(PROJECT_CONFIG_DIR ${CMAKE_INSTALL_PREFIX}/etc)
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_INSTALL_PREFIX}/lib)
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_INSTALL_PREFIX}/lib)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_INSTALL_PREFIX}/bin)
 
 # delivery targets
 add_custom_target(deliver ALL
@@ -25,9 +26,11 @@ add_custom_target(deliver ALL
 )
 
 # clean targets
-add_custom_target(clean-all
-   COMMAND ${CMAKE_BUILD_TOOL} clean
+add_custom_target(distclean
+	COMMAND ${CMAKE_BUILD_TOOL} clean
+	COMMAND ${CMAKE_COMMAND} -E remove_directory ${PROJECT_CONFIG_DIR}
 )
 
 add_subdirectory(locker)
+add_subdirectory(catalog)
 

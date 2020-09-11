@@ -1,6 +1,9 @@
 cmake_minimum_required(VERSION 3.1.0)
 project(tsix-autoconnect)
 
+message(STATUS "CYGWIN: " ${CYGWIN})
+message(STATUS "WINDOWS: " ${WIN32})
+
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
@@ -16,12 +19,12 @@ add_definitions(-Wall -Werror)
 
 # define custom output dirs
 set(PROJECT_CONFIG_DIR ${CMAKE_INSTALL_PREFIX}/etc)
-set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_INSTALL_PREFIX}/lib)
-set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_INSTALL_PREFIX}/lib)
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_INSTALL_PREFIX}/bin)
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/.built/lib)
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/.built/lib)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/.built/bin)
 
 # delivery targets
-add_custom_target(deliver ALL
+add_custom_target(deliver
 	COMMENT "Deliver addtional stuffs"
 )
 

@@ -3,6 +3,7 @@
 
 #include "SignalHandler.h"
 #include <assert.h>
+#include <set>
 
 #ifndef _WIN32
 #  include <signal.h>
@@ -134,7 +135,8 @@ BOOL WINAPI WIN32_handleFunc(DWORD signal) {
         // protect this search by a mutex
         std::set<int>::const_iterator found = g_registry.find(signo);
         if (signo != -1 && found != g_registry.end()) {
-            return g_handler->handleSignal(signo) ? TRUE : FALSE;
+            g_handler->handleSignal(signo);
+            return TRUE;
         }
         else {
             return FALSE;

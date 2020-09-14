@@ -1,12 +1,22 @@
 
-#### BUILD
+#### SETTINGS
 set(CATALOG_BIN catalog_edit)
+
+set(LOCAL_UI rc/mainwindow.ui )
+set(LOCAL_RC rc/editabletreemodel.qrc )
+
+
+#### BUILD
+QT5_WRAP_UI(CATALOG_UI_FILES ${LOCAL_UI} )
+QT5_ADD_RESOURCES(CATALOG_RC_FILES ${LOCAL_RC} )
+ 
+include_directories(${CMAKE_CURRENT_BINARY_DIR})
 
 add_executable(${CATALOG_BIN}
     ## resources
-	src/mainwindow.ui
-    src/editabletreemodel.qrc
-
+	${CATALOG_UI_FILES}
+    ${CATALOG_RC_FILES}
+    
 	## code
 	src/main.cpp
 	src/mainwindow.cpp

@@ -1,114 +1,118 @@
-[
-  {
-    "family": "FT",
-    "description": "FT correction",
-    "acronym": "UO1.1",
-    "workload": "0,625",
-    "price": "303"
-  },
-  {
-    "family": "FT",
-    "description": "FT documentaire",
-    "acronym": "UO1.2",
-    "workload": "0,625",
-    "price": "289"
-  },
-  {
-    "family": "FT",
-    "description": "FT mise à jour dossier",
-    "acronym": "UO1.3",
-    "workload": "0,5",
-    "price": "243"
-  },
-  {
-    "family": "DEV",
-    "description": "Spécification SSS/HRS/PIDS/SRS",
-    "acronym": "UO3.1",
-    "workload": "6,75",
-    "price": "3274"
-  },
-  {
-    "family": "DEV",
-    "description": "Test CPE/CRE/STD/STR/HTD/HTR/APT/ATR",
-    "acronym": "UO3.2",
-    "workload": "6",
-    "price": "2910"
-  },
-  {
-    "family": "DEV",
-    "description": "Script/Libraries",
-    "acronym": "UO3.3",
-    "workload": "2,375",
-    "price": "1103"
-  },
-  {
-    "family": "DEV",
-    "description": "Séquence de Tests",
-    "acronym": "UO3.4",
-    "workload": "2,25",
-    "price": "1067"
-  },
-  {
-    "family": "DEV",
-    "description": "Passage de fiche de Tests",
-    "acronym": "UO3.5",
-    "workload": "0,125",
-    "price": "61"
-  },
-  {
-    "family": "DEV",
-    "description": "Dossier de définition/qualification",
-    "acronym": "UO3.6",
-    "workload": "1",
-    "price": "485"
-  },
-  {
-    "family": "DEV",
-    "description": "Préparation audit/revue de phase",
-    "acronym": "UO3.7",
-    "workload": "1",
-    "price": "485"
-  },
-  {
-    "family": "DEV",
-    "description": "Pilotage et suivi des appros",
-    "acronym": "UO3.8",
-    "workload": "0,5",
-    "price": "243"
-  },
-  {
-    "family": "INDUS",
-    "description": "Complément de qualification mineur",
-    "acronym": "UO4.1",
-    "workload": "2",
-    "price": "970"
-  },
-  {
-    "family": "INDUS",
-    "description": "Complément de qualification majeur - documentaire",
-    "acronym": "UO4.2",
-    "workload": "2,5",
-    "price": "1213"
-  },
-  {
-    "family": "INDUS",
-    "description": "Complément de qualification majeur - technique",
-    "acronym": "UO4.3",
-    "workload": "2,5",
-    "price": "1213"
-  },
-  {
-    "family": "MCO",
-    "description": "Recherche de cause de défaillance",
-    "acronym": "UO5.1",
-    "workload": "0,625",
-    "price": "303"
-  },
-  {
-    "family": "MCO",
-    "description": "Remise en état opérationnel du moyen",
-    "acronym": "UO5.2",
-    "workload": "1",
-    "price": "485"
-  }
-]
+{
+  "version": "2",
+  "epoch": 1600001714,
+  "catalog": [
+    {
+      "family": "FT",
+      "description": "FT correction",
+      "acronym": "UO1.1",
+      "workload": "0,625",
+      "price": "303"
+    },
+    {
+      "family": "FT",
+      "description": "FT documentaire",
+      "acronym": "UO1.2",
+      "workload": "0,625",
+      "price": "289"
+    },
+    {
+      "family": "FT",
+      "description": "FT mise à jour dossier",
+      "acronym": "UO1.3",
+      "workload": "0,5",
+      "price": "243"
+    },
+    {
+      "family": "DEV",
+      "description": "Spécification SSS/HRS/PIDS/SRS",
+      "acronym": "UO3.1",
+      "workload": "6,75",
+      "price": "3274"
+    },
+    {
+      "family": "DEV",
+      "description": "Test CPE/CRE/STD/STR/HTD/HTR/APT/ATR",
+      "acronym": "UO3.2",
+      "workload": "6",
+      "price": "2910"
+    },
+    {
+      "family": "DEV",
+      "description": "Script/Libraries",
+      "acronym": "UO3.3",
+      "workload": "2,375",
+      "price": "1103"
+    },
+    {
+      "family": "DEV",
+      "description": "Séquence de Tests",
+      "acronym": "UO3.4",
+      "workload": "2,25",
+      "price": "1067"
+    },
+    {
+      "family": "DEV",
+      "description": "Passage de fiche de Tests",
+      "acronym": "UO3.5",
+      "workload": "0,125",
+      "price": "61"
+    },
+    {
+      "family": "DEV",
+      "description": "Dossier de définition/qualification",
+      "acronym": "UO3.6",
+      "workload": "1",
+      "price": "485"
+    },
+    {
+      "family": "DEV",
+      "description": "Préparation audit/revue de phase",
+      "acronym": "UO3.7",
+      "workload": "1",
+      "price": "485"
+    },
+    {
+      "family": "DEV",
+      "description": "Pilotage et suivi des appros",
+      "acronym": "UO3.8",
+      "workload": "0,5",
+      "price": "243"
+    },
+    {
+      "family": "INDUS",
+      "description": "Complément de qualification mineur",
+      "acronym": "UO4.1",
+      "workload": "2",
+      "price": "970"
+    },
+    {
+      "family": "INDUS",
+      "description": "Complément de qualification majeur - documentaire",
+      "acronym": "UO4.2",
+      "workload": "2,5",
+      "price": "1213"
+    },
+    {
+      "family": "INDUS",
+      "description": "Complément de qualification majeur - technique",
+      "acronym": "UO4.3",
+      "workload": "2,5",
+      "price": "1213"
+    },
+    {
+      "family": "MCO",
+      "description": "Recherche de cause de défaillance",
+      "acronym": "UO5.1",
+      "workload": "0,625",
+      "price": "303"
+    },
+    {
+      "family": "MCO",
+      "description": "Remise en état opérationnel du moyen",
+      "acronym": "UO5.2",
+      "workload": "1",
+      "price": "485"
+    }
+  ]
+}

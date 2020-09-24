@@ -42,10 +42,11 @@ add_subdirectory(catalog)
 ## DELIVER
 add_custom_target(deliv_final
 	COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_INSTALL_PREFIX}/plugins/platforms
-	COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_FIND_ROOT_PATH}/lib/qt5/plugins/platforms/qwindows.dll ${CMAKE_INSTALL_PREFIX}/plugins/platforms
+	COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_FIND_ROOT_PATH}/lib/qt5/plugins/platforms/*.dll ${CMAKE_INSTALL_PREFIX}/plugins/platforms
 	COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_SOURCE_DIR}/files/catalog.bat ${CMAKE_INSTALL_PREFIX}
+	COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_INSTALL_PREFIX}/etc/pkgs
 	WORKING_DIRECTORY ${CMAKE_BINARY_DIR}/
-	COMMENT "Deliver Qt plugins"
+	COMMENT "Deliver final stuffs"
 )
 add_dependencies(deliver deliv_final)
 
